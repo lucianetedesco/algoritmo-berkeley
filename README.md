@@ -41,20 +41,20 @@ java -jar Server.jar
 ### Exemplo de Saída:
 Server:
 ```console
-Server time: 2019-04-20T13:46
+Server time: 2019-04-20T21:34
 Server started
-Server time: 2019-04-20T06:47
-Server 2 started
-Updated time to: 2019-04-20T12:49:40
-Updated time to: 2019-04-20T12:49:40
+Server time: 2019-04-20T11:07
+Server started
+Updated time to: 2019-04-20T11:05:20
+Updated time to: 2019-04-20T11:05:20
 ```
 Client:
 ```console
-Server time 192.168.208.1: 2019-04-20T13:46
-Server time 192.175.209.1: 2019-04-20T06:47
-Client time: 2019-04-20T17:56
-Result date time: 2019-04-20T12:49:40
-Server time 192.168.208.1: 2019-04-20T12:49:40 
-Server time 192.175.209.1: 2019-04-20T12:49:40 
-Client time: 2019-04-20T12:49:40
+Server time 192.168.208.1: 2019-04-20T21:34
+Server time 192.175.209.1: 2019-04-20T11:07
+Client time: 2019-04-20T08:29
+Result Berkeley: 2019-04-20T11:05:20
+Server time 192.168.208.1: 2019-04-20T11:05:20
+Server time 192.175.209.1: 2019-04-20T11:05:20 
+Client time: 2019-04-20T11:05:20
 ```
