@@ -28,13 +28,12 @@ public class MainClient {
 
 			// List connections
 			final List<Connection> connections = new ArrayList<>();
-
-            // Se você quiser testar local, informe duas conexões com o seu ip. Uma na porta 4500 e outra na 4501. Necessário descomentar o código na classe MainServer. 
-			connections.add(new Connection("192.168.208.1", 4500));
-			connections.add(new Connection("192.179.209.1", 4500));
+			connections.add(new Connection("localhost", 4500));
+			connections.add(new Connection("192.168.0.6", 4500));
 
 			// List date time
 			final Map<Connection, ServerTime> servers = new HashMap<>();
+
 			for (Connection c : connections) {
 				Registry registry = LocateRegistry.getRegistry(c.getAddress(), c.getPort());
 				ServerTime st = (ServerTime) registry.lookup("ServerTimeImpl");
@@ -45,14 +44,18 @@ public class MainClient {
 			System.out.println("Client time: " + time);
 
 			// Berkeley
-			long sum = time.getEpochSeconds();
+			long coordinatorSeconds = time.getEpochSeconds();
+			long diffServer = 0;
+			long sum = 0;
 			for (Map.Entry<Connection, ServerTime> entry : servers.entrySet()) {
-				sum += entry.getValue().getTime().getEpochSeconds();
+				diffServer = (entry.getValue().getTime().getEpochSeconds()) - coordinatorSeconds;
+				sum += diffServer;
 			}
-			long resultSeconds = sum / (servers.size() + 1);
+			long average = sum / (servers.size() + 1);
+			long resultSeconds = (average + (-1 * diffServer)) + coordinatorSeconds;
 			LocalDateTime resultDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(resultSeconds),
 					ZoneOffset.UTC);
-			System.out.println("Result date time: " + resultDateTime);
+			System.out.println("Result Berkeley: " + resultDateTime);
 
 			// Set the new date time
 			for (Map.Entry<Connection, ServerTime> entry : servers.entrySet()) {
