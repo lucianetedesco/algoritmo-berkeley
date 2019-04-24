@@ -23,8 +23,8 @@ O algoritmo de Berkeley é o método que faz o relógio distribuir e sincronizar
 ```
 2) Informar o ip dos dois servidores na classe MainClient, conforme exemplo:
 ```java
-connections.add(new Connection("192.168.208.1", 4500));
-connections.add(new Connection("192.175.209.1", 4500));
+connections.add(new Connection("201.54.201.56", 4500));
+connections.add(new Connection("201.54.201.43", 4500));
 ```
 3) Iniciar o RMI Registry, através do prompt de comandos: 
 ```bash
@@ -41,20 +41,20 @@ java -jar Server.jar
 ### Exemplo de Saída:
 Server:
 ```console
-Server time: 2019-04-20T21:34
+Server time: 2019-04-23T18:06
 Server started
-Server time: 2019-04-20T11:07
+Server time: 2019-04-23T07:08
 Server started
-Updated time to: 2019-04-20T11:05:20
-Updated time to: 2019-04-20T11:05:20
+Updated time to: 2019-04-23T08:26
+Updated time to: 2019-04-23T08:26
 ```
 Client:
 ```console
-Server time 192.168.208.1: 2019-04-20T21:34
-Server time 192.175.209.1: 2019-04-20T11:07
-Client time: 2019-04-20T08:29
-Result Berkeley: 2019-04-20T11:05:20
-Server time 192.168.208.1: 2019-04-20T11:05:20
-Server time 192.175.209.1: 2019-04-20T11:05:20 
-Client time: 2019-04-20T11:05:20
+Server time 201.54.201.56: 2019-04-23T18:06
+Server time 201.54.201.43: 2019-04-23T07:08
+Client time: 2019-04-23T00:04
+Result Berkeley: 2019-04-23T08:26
+Server time 201.54.201.56: 2019-04-23T08:26 
+Server time 201.54.201.43: 2019-04-23T08:26 
+Client time: 2019-04-23T08:26
 ```
