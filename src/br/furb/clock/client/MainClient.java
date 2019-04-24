@@ -28,9 +28,9 @@ public class MainClient {
 
 			// List connections
 			final List<Connection> connections = new ArrayList<>();
-			connections.add(new Connection("localhost", 4500));
-			connections.add(new Connection("192.168.0.6", 4500));
-
+			connections.add(new Connection("201.54.201.56", 4500));
+			connections.add(new Connection("201.54.201.43", 4500));
+			
 			// List date time
 			final Map<Connection, ServerTime> servers = new HashMap<>();
 
@@ -47,12 +47,16 @@ public class MainClient {
 			long coordinatorSeconds = time.getEpochSeconds();
 			long diffServer = 0;
 			long sum = 0;
+			long timeServer = 0;
 			for (Map.Entry<Connection, ServerTime> entry : servers.entrySet()) {
-				diffServer = (entry.getValue().getTime().getEpochSeconds()) - coordinatorSeconds;
+				timeServer = (entry.getValue().getTime().getEpochSeconds());
+				diffServer = timeServer - coordinatorSeconds;
 				sum += diffServer;
 			}
 			long average = sum / (servers.size() + 1);
-			long resultSeconds = (average + (-1 * diffServer)) + coordinatorSeconds;
+
+			long resultSeconds = (average + (-1 * diffServer) + timeServer);
+
 			LocalDateTime resultDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(resultSeconds),
 					ZoneOffset.UTC);
 			System.out.println("Result Berkeley: " + resultDateTime);
